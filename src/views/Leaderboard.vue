@@ -1,7 +1,11 @@
 <template>
   <main-layout>
-    <v-card>
-      <v-card-title>
+    <h1 class="page-title mb-6">
+      Лидерборд <span class="accent-text">и достижения</span>
+    </h1>
+    
+    <v-card class="mb-6">
+      <v-card-title class="text-h5 pt-6 px-6">
         Лидерборд
         <v-spacer></v-spacer>
         <v-select
@@ -11,11 +15,12 @@
           variant="outlined"
           label="Сортировать по"
           style="max-width: 250px"
+          class="rounded-xl"
         ></v-select>
       </v-card-title>
       
-      <v-card-text>
-        <v-table>
+      <v-card-text class="px-6 pb-6">
+        <v-table class="rounded-xl">
           <thead>
             <tr>
               <th class="text-center">Место</th>
@@ -29,13 +34,13 @@
             <tr 
               v-for="(user, index) in sortedUsers" 
               :key="user.userId"
-              :class="{'primary-text': user.userId === currentUserId}"
+              :class="{'accent-bg': user.userId === currentUserId}"
             >
               <td class="text-center">
                 <v-avatar
                   v-if="index < 3"
                   :color="getPlaceColor(index)"
-                  size="32"
+                  size="36"
                   class="white--text font-weight-bold"
                 >
                   {{ index + 1 }}
@@ -44,10 +49,10 @@
               </td>
               <td>
                 <div class="d-flex align-center">
-                  <v-avatar size="32" class="mr-2">
+                  <v-avatar size="36" class="mr-3">
                     <v-img :src="user.avatar" alt="User Avatar"></v-img>
                   </v-avatar>
-                  {{ user.name }}
+                  <span class="font-weight-medium">{{ user.name }}</span>
                 </div>
               </td>
               <td class="text-center">{{ user.totalPoints }}</td>
@@ -60,26 +65,26 @@
     </v-card>
     
     <!-- Статистика текущего пользователя -->
-    <v-card class="mt-6">
-      <v-card-title>Ваша статистика</v-card-title>
-      <v-card-text>
+    <v-card>
+      <v-card-title class="text-h5 pt-6 px-6">Ваша статистика</v-card-title>
+      <v-card-text class="px-6 pb-6">
         <v-row>
           <v-col cols="12" md="4">
-            <v-card variant="outlined" class="text-center pa-4">
-              <div class="text-h4 font-weight-bold">{{ currentUserPoints }}</div>
-              <div class="text-subtitle-1">Общий счет</div>
+            <v-card variant="outlined" class="text-center pa-4 rounded-xl stat-card">
+              <div class="text-h3 font-weight-bold accent-text">{{ currentUserPoints }}</div>
+              <div class="text-subtitle-1 mt-2">Общий счет</div>
             </v-card>
           </v-col>
           <v-col cols="12" md="4">
-            <v-card variant="outlined" class="text-center pa-4">
-              <div class="text-h4 font-weight-bold">{{ currentUserTasksCompleted }}</div>
-              <div class="text-subtitle-1">Решено задач</div>
+            <v-card variant="outlined" class="text-center pa-4 rounded-xl stat-card">
+              <div class="text-h3 font-weight-bold accent-text">{{ currentUserTasksCompleted }}</div>
+              <div class="text-subtitle-1 mt-2">Решено задач</div>
             </v-card>
           </v-col>
           <v-col cols="12" md="4">
-            <v-card variant="outlined" class="text-center pa-4">
-              <div class="text-h4 font-weight-bold">{{ currentUserStreak }}</div>
-              <div class="text-subtitle-1">Серия дней</div>
+            <v-card variant="outlined" class="text-center pa-4 rounded-xl stat-card">
+              <div class="text-h3 font-weight-bold accent-text">{{ currentUserStreak }}</div>
+              <div class="text-subtitle-1 mt-2">Серия дней</div>
             </v-card>
           </v-col>
         </v-row>
@@ -128,7 +133,7 @@ export default {
   },
   methods: {
     getPlaceColor(index) {
-      const colors = ['amber-darken-2', 'grey-lighten-1', 'amber-darken-4'];
+      const colors = ['#fccc42', '#f7f7f5', '#ff5734'];
       return colors[index];
     }
   }
@@ -136,7 +141,33 @@ export default {
 </script>
 
 <style scoped>
-.primary-text {
-  background-color: rgba(var(--v-theme-primary), 0.1);
+.page-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.accent-bg {
+  background-color: rgba(255, 87, 52, 0.08);
+}
+
+.accent-text {
+  color: #ff5734;
+}
+
+.stat-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 87, 52, 0.2);
+}
+
+.stat-card:hover {
+  border-color: #ff5734;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.v-table {
+  box-shadow: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 </style> 

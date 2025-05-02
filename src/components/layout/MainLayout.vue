@@ -1,39 +1,24 @@
 <template>
   <v-app>
-    <app-header />
+    <div class="layout-container">
+      <app-header />
+      
+      <v-main class="bg-background">
+        <v-container fluid class="py-8 px-4 px-md-6" style="max-width: 1440px; min-height: calc(100vh - 165px);">
+          <slot></slot>
+        </v-container>
+      </v-main>
+    </div>
     
-    <v-main class="bg-background">
-      <v-container fluid class="py-8 px-4 px-md-6" style="max-width: 1440px;">
-        <slot></slot>
-      </v-container>
-    </v-main>
-    
-    <v-footer app color="primary" class="py-4">
-      <v-container>
-        <v-row justify="space-between" align="center">
-          <v-col cols="12" md="4" class="text-center text-md-left">
-            <div class="text-h6 font-weight-bold white--text">Бизнес Платформа</div>
-            <div class="text-caption white--text mt-1 opacity-75">Развивайте профессиональные навыки с нами</div>
+    <v-footer app color="#fccc42" class="footer-container py-2">
+      <v-container class="px-4 d-flex" style="max-width: 1440px">
+        <v-row justify="space-between" align="center" style="width: 100%">
+          <v-col cols="12" sm="6" class="text-center text-sm-left mb-0">
+            <div class="text-body-2 font-weight-medium">Платформа для бизнес-задач</div>
           </v-col>
           
-          <v-col cols="12" md="4" class="text-center d-flex justify-center">
-            <v-btn icon variant="text" class="mx-1" color="white">
-              <v-icon>mdi-youtube</v-icon>
-            </v-btn>
-            <v-btn icon variant="text" class="mx-1" color="white">
-              <v-icon>mdi-linkedin</v-icon>
-            </v-btn>
-            <v-btn icon variant="text" class="mx-1" color="white">
-              <v-icon>mdi-twitter</v-icon>
-            </v-btn>
-            <v-btn icon variant="text" class="mx-1" color="white">
-              <v-icon>mdi-github</v-icon>
-            </v-btn>
-          </v-col>
-          
-          <v-col cols="12" md="4" class="text-center text-md-right white--text">
-            <div>{{ new Date().getFullYear() }} — <strong>Бизнес Платформа</strong></div>
-            <div class="text-caption opacity-75 mt-1">Все права защищены</div>
+          <v-col cols="12" sm="6" class="text-center text-sm-right mb-0">
+            <div class="text-caption">{{ new Date().getFullYear() }} — Все права защищены</div>
           </v-col>
         </v-row>
       </v-container>
@@ -53,12 +38,18 @@ export default {
 </script>
 
 <style scoped>
-.bg-background {
-  background-color: #f8f9fa;
+.layout-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.v-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.bg-background {
+  background-color: #be94f5;
+}
+
+.footer-container {
+  width: 100% !important;
 }
 
 .v-container {
