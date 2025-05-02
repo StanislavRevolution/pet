@@ -123,9 +123,10 @@ const routes = [
   }
 ];
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-});
+console.log('BASE_URL is', import.meta.env.BASE_URL)
 
-export default router;
+const router = createRouter({
+    history: createWebHashHistory(import.meta.env.BASE_URL),
+    routes
+  })
+  export default router
